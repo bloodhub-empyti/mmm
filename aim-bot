@@ -1,0 +1,105 @@
+-- by baucua.p
+if getgenv().V2G4m3Cl0s3 then return end
+getgenv().V2G4m3Cl0s3 = true
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer = Players.LocalPlayer
+local Preferences = LocalPlayer.PlayerGui:WaitForChild("Menus"):WaitForChild("Preferences")
+
+Preferences.Size = UDim2.new(0, 600, 0, 710)
+
+local AutoClick = Preferences.Frame:WaitForChild("SwordAutoClick")
+local Sniper = AutoClick:Clone()
+Sniper.Name = ""
+Sniper.Parent = Preferences.Frame
+
+local Label = Sniper:WaitForChild("TextLabel")
+Label.Text = "AimBot V1"
+
+task.spawn(function()
+	while true do
+		local t = tick()
+		local r = math.sin(t) * 127 + 128
+		local g = math.sin(t + 2) * 127 + 128
+		local b = math.sin(t + 4) * 127 + 128
+		Label.TextColor3 = Color3.fromRGB(r, g, b)
+		task.wait(0.1)
+	end
+end)
+
+local Button = Sniper:WaitForChild("Button")
+local Switch = Button:WaitForChild("SwitchState")
+Switch.Value = true
+Button.MouseButton1Click:Connect(function()
+	Switch.Value = not Switch.Value
+end)
+
+local Remote = ReplicatedStorage:WaitForChild("Events"):WaitForChild("Remote"):WaitForChild("ShotTarget")
+local ToolName = "Sniper"
+local Character
+
+local bulletSpeed = 8000
+
+local function updateCharacter()
+	Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+end
+
+updateCharacter()
+LocalPlayer.CharacterAdded:Connect(updateCharacter)
+
+local function getEquippedTool()
+	if not Character then return end
+	for _, tool in ipairs(Character:GetChildren()) do
+		if tool:IsA("Tool") and tool.Name == ToolName then
+			return tool
+		end
+	end
+	return nil
+end
+
+local function getClosestTarget()
+	if not Character or not Character:FindFirstChild("Head") then return end
+	local origin = Character.Head.Position
+	local closestPlayer, shortestDistance, aimPosition
+
+	for _, player in ipairs(Players:GetPlayers()) do
+		if player ~= LocalPlayer and player.Team ~= LocalPlayer.Team and player.Team then
+			local targetChar = player.Character
+			local head = targetChar and targetChar:FindFirstChild("Head")
+			local humanoid = targetChar and targetChar:FindFirstChild("Humanoid")
+			local root = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
+			if head and humanoid and humanoid.Health > 0 and root then
+				local distance = (head.Position - origin).Magnitude
+				local travelTime = distance / bulletSpeed
+				local predictedPosition = head.Position + root.Velocity * travelTime
+				local ray = Ray.new(origin, (predictedPosition - origin).Unit * 1000)
+				local hit = workspace:FindPartOnRay(ray, Character)
+				if hit and hit:IsDescendantOf(targetChar) then
+					if not shortestDistance or distance < shortestDistance then
+						shortestDistance = distance
+						closestPlayer = targetChar
+						aimPosition = predictedPosition
+					end
+				end
+			end
+		end
+	end
+	return aimPosition
+end
+
+task.spawn(function()
+	while true do
+		if Switch.Value then
+			local tool = getEquippedTool()
+			if tool then
+				local position = getClosestTarget()
+				if position then
+					Remote:FireServer(position, ToolName)
+				end
+			end
+		end
+		task.wait()
+	end
+end) 
