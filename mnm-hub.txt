@@ -406,7 +406,7 @@ nowe = false
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title = "MNM Fly"
-	Text = "BY Er";
+	Text = "BY Er",
 	Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
 Duration = 5;
 
