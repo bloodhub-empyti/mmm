@@ -32,7 +32,7 @@ function ESP:createComponents()
         }),
 
         NameLabel = self:createDrawing("Text", {
-            Size = 13,
+            Size = 11,
             Center = true,
             Outline = true,
             Color = Color3.fromRGB(255,255,255),
@@ -40,7 +40,7 @@ function ESP:createComponents()
         }),
 
         DistanceLabel = self:createDrawing("Text", {
-            Size = 13,
+            Size = 11,
             Center = true,
             Outline = true,
             Color = Color3.fromRGB(255,255,255),
@@ -48,7 +48,7 @@ function ESP:createComponents()
         }),
 
         HealthText = self:createDrawing("Text", {
-            Size = 13,
+            Size = 11,
             Center = true,
             Outline = true,
             Color = Color3.fromRGB(0,255,0),
@@ -56,7 +56,7 @@ function ESP:createComponents()
         }),
 
         ItemLabel = self:createDrawing("Text", {
-            Size = 13,
+            Size = 11,
             Center = true,
             Outline = true,
             Color = Color3.fromRGB(255,255,0),
@@ -118,8 +118,8 @@ function ESP:updateComponents(c, character, player)
     )
 
     local scale = 1 / rootPos.Z * 100
-    local width = 35 * scale
-    local height = 50 * scale
+    local width = 25 * scale
+    local height = 30 * scale
 
     c.Box.Size = Vector2.new(width, height)
     c.Box.Position = Vector2.new(rootPos.X - width/2, rootPos.Y - height/2)
