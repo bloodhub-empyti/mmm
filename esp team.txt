@@ -1,93 +1,127 @@
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local Camera = workspace.CurrentCamera
+local _Players = game:GetService("Players")
+local _Workspace = game:GetService("Workspace")
+local _LocalPlayer = _Players.LocalPlayer
+local _ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local ESPEnabled = true
-
-local function CreateESP(character, player)
-    if character:FindFirstChild("TeamESPFolder") then return end
-    
-    local hrp = character:WaitForChild("HumanoidRootPart", 5)
-    if not hrp then return end
-    
-    local folder = Instance.new("Folder")
-    folder.Name = "TeamESPFolder"
-    folder.Parent = character
-
-    -- ===== BOX =====
-    local box = Instance.new("BoxHandleAdornment")
-    box.Name = "Box"
-    box.Adornee = hrp
-    box.Size = Vector3.new(4,6,2)
-    box.Color3 = player.TeamColor.Color
-    box.AlwaysOnTop = true
-    box.ZIndex = 10
-    box.Transparency = 0.4
-    box.Parent = folder
-
-    local billboard = Instance.new("BillboardGui")
-    billboard.Name = "Distance"
-    billboard.Adornee = hrp
-    billboard.Size = UDim2.new(0, 100, 0, 20)
-    billboard.StudsOffset = Vector3.new(0, 3.5, 0)
-    billboard.AlwaysOnTop = true
-    billboard.Parent = folder
-
-    local text = Instance.new("TextLabel")
-    text.Size = UDim2.new(1,0,1,0)
-    text.BackgroundTransparency = 1
-    text.TextScaled = false
-    text.TextSize = 14 -- nhỏ vừa đủ nhìn
-    text.Font = Enum.Font.Gotham
-    text.TextStrokeTransparency = 0
-    text.TextColor3 = player.TeamColor.Color
-    text.Parent = billboard
-
-    task.spawn(function()
-        while character.Parent and ESPEnabled do
-            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                local myPos = LocalPlayer.Character.HumanoidRootPart.Position
-                local targetPos = hrp.Position
-                local distance = (myPos - targetPos).Magnitude
-                text.Text = math.floor(distance) .. "m"
-            end
-            task.wait(0.1)
-        end
-    end)
-end
-
-local function RemoveESP(character)
-    if character and character:FindFirstChild("TeamESPFolder") then
-        character.TeamESPFolder:Destroy()
-    end
-end
-
-local function SetupPlayer(player)
-    if player == LocalPlayer then return end
-
-    local function Apply(character)
-        if not ESPEnabled then return end
-        CreateESP(character, player)
-    end
-
-    if player.Character then
-        Apply(player.Character)
-    end
-
-    player.CharacterAdded:Connect(function(character)
+task.spawn(function()
+    while getgenv().PlayerESP do
         task.wait(1)
-        Apply(character)
-    end)
-end
 
-Players.PlayerAdded:Connect(SetupPlayer)
+        local v1 = _Players
+        local v2, v3, v4 = ipairs(v1:GetPlayers())
 
-Players.PlayerRemoving:Connect(function(player)
-    if player.Character then
-        RemoveESP(player.Character)
+        while true do
+            local v5
+            v4, v5 = v2(v3, v4)
+
+            if v4 == nil then
+                break
+            end
+
+            if v5.Character then
+                local _Character3 = v5.Character
+
+                if getgenv().PlayerESP then
+                    if not _Character3:FindFirstChildOfClass("Highlight") then
+                        local _Highlight = Instance.new("Highlight")
+
+                        if v5.Team then
+                            _Highlight.FillColor = v5.Team.TeamColor.Color
+                            _Highlight.FillTransparency = 0.3
+                        else
+                           
+                            _Highlight.FillColor = Color3.fromRGB(220,220,220)
+                            _Highlight.FillTransparency = 0.45
+                        end
+
+                        _Highlight.Adornee = _Character3
+                        _Highlight.OutlineColor = Color3.fromRGB(0,0,0)
+                        _Highlight.OutlineTransparency = 1
+                        _Highlight.Enabled = true
+                        _Highlight.Parent = _Character3
+                    end
+                else
+                    local _Highlight2 = _Character3:FindFirstChildOfClass("Highlight")
+                    if _Highlight2 then
+                        _Highlight2:Destroy()
+                    end
+                end
+            end
+        end
     end
 end)
 
-for _, player in pairs(Players:GetPlayers()) do
-    SetupPlayer(player)
+local function u1()
+    local v11 = _Workspace
+    local v12, v13, v14 = ipairs(v11:GetDescendants())
+
+    while true do
+        local v15
+        v14, v15 = v12(v13, v14)
+
+        if v14 == nil then
+            break
+        end
+
+        if v96:IsA("Model") and v15.Name == "Flag" then
+            if not v96:FindFirstChildOfClass("Highlight") then
+                local _Highlight3 = Instance.new("Highlight")
+
+                _Highlight3.Adornee = v15
+                _Highlight3.FillColor = Color3.fromRGB(0,255,0)
+                _Highlight3.OutlineColor = Color3.fromRGB(0,0,0)
+                _Highlight3.FillTransparency = 0.7
+                _Highlight3.OutlineTransparency = 1
+                _Highlight3.Parent = v15
+            end
+        end
+    end
+end
+
+local function u2()
+    local v18 = _Workspace
+    local v19, v20, v21 = ipairs(v18:GetDescendants())
+
+    while true do
+        local v22
+        v21, v22 = v19(v20, v21)
+
+        if v21 == nil then
+            break
+        end
+
+        if (v22:IsA("Model") and v22.Name == "Flag") then
+            local _Highlight4 = v22:FindFirstChildOfClass("Highlight")
+            if _Highlight4 then
+                _Highlight4:Destroy()
+            end
+        end
+    end
+end
+
+local function u3()
+    task.spawn(function()
+        while getgenv().AutoChangeTeam do
+            task.wait(0.15)
+
+            local _Team3 = _LocalPlayer.Team
+            if _Team3 then
+                _Team3 = _Team3.Name
+            end
+
+            if _Team3 == "Blue" then
+                getgenv().AutoFarmTeam = "Red"
+            elseif _Team3 == "Red" then
+                getgenv().AutoFarmTeam = "Blue"
+            else
+                getgenv().AutoFarmTeam = "None"
+            end
+
+            if _LocalPlayer.PlayerGui:FindFirstChild("Hud") then
+                if _LocalPlayer.PlayerGui.Hud.Left.Mini.ChangeTeam.Free.Visible then
+                    _ReplicatedStorage.Events.Remote.ChangeTeam:FireServer()
+                end
+            end
+        end
+    end)
 end
