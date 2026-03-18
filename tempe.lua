@@ -1,19 +1,3 @@
---[[
-    QUICK START (3 lines to a full hub):
-    
-    local UI = loadstring(game:HttpGet("URL"))()
-    local win, tab = UI.Quick("My Hub", "Combat", "crosshair")
-    
-    tab:AddToggle("Aimbot", "aim_on", function(v) Aimbot.Enabled = v end)
-    tab:AddSlider("FOV", "aim_fov", {10, 150, Default = 60}, function(v) end)
-    tab:AddDropdown("Hitbox", "aim_hit", {"Head", "Torso"}, function(v) end)
-    
-    -- Demo window: UI.Demo()
-    -- Schema builder: UI.Build({ Title = "Hub", Tabs = {...} })
-]]
-
-
-
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
