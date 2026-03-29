@@ -1,5 +1,3 @@
--- ts file was generated at discord.gg/25ms
-
 local _Players = game:GetService('Players')
 local _TweenService = game:GetService('TweenService')
 local _Workspace = game:GetService('Workspace')
@@ -112,7 +110,7 @@ local _ImageLabel = Instance.new('ImageLabel', _Frame)
 _ImageLabel.Size = UDim2.new(0, 800, 0, 200)
 _ImageLabel.Position = UDim2.new(0.5, -400, 0.5, -100)
 _ImageLabel.BackgroundTransparency = 1
-_ImageLabel.Image = 'rbxassetid://131274595'
+_ImageLabel.Image = 'rbxassetid://87122722614578'
 _ImageLabel.ImageColor3 = Color3.fromRGB(255, 0, 0)
 _ImageLabel.ImageTransparency = 1
 _ImageLabel.ZIndex = 1
