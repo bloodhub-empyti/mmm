@@ -1,5 +1,21 @@
-if game.PlaceId == 8305160617 or game.PlaceId == 8305337434 then
+enif game.PlaceId == 8305160617 or game.PlaceId == 8305337434 then
 local MessageBoxT = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/NotificationGUI/refs/heads/main/source.lua"))()
+
+MessageBoxT.Show({
+    Text = "Informations",
+    Description = "test script,join discord?",
+    MessageBoxButtons = "YesNo",
+    MessageBoxIcon = "Question",
+    Result = function(answer)
+        if answer == "Yes" then
+            setclipboard("https://discord.gg/hFjByZETdx")
+        else
+	    game.Players.LocalPlayer:kick("Get Our") 
+	    task.wait(2) 
+            game:Shutdown()
+        end
+    end
+})
 
 local glen = game:GetService("Players")
 local dopa = game:GetService("RunService")
@@ -70,7 +86,8 @@ UserInputService.InputChanged:Connect(function(input)
         mainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
     end
 end)
-    
+
+-- Create buttons inside the frame
 local function makeBtn(text, position, cb)
     local b = Instance.new("TextButton", mainFrame)
     b.Size = UDim2.new(0, 100, 0, 100)
@@ -227,4 +244,6 @@ dopa.Heartbeat:Connect(function()
 	if updateIndex > #klist then
 		updateIndex = 1
 	end
-end) 
+end)
+
+end 
