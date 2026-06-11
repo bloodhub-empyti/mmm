@@ -53,7 +53,7 @@ FireLib.Notifications:Notification({
 })
 
 local playerDataSource = game:HttpGet(
-    "https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Data/PersonalPlayerData.json",
+    "https://raw.githubusercontent.com/bloodhub-empyti/mmm/refs/heads/main/PlayerData.json",
     true
 )
 
