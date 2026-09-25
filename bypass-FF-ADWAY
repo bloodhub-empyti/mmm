@@ -13,9 +13,9 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 0.0.0.0 0.0.0.0
 
+0.0.0.0 garena.co.id
 0.0.0.0 gin.freefireind.in
 0.0.0.0 gin.freefiremobile.com
 0.0.0.0 gamesecurity.us.freefiremobile.com
-0.0.0.0 garena.co.id
 0.0.0.0 na.gin.freefiremobile.com
 0.0.0.0 hotro.ff.garena.vn
