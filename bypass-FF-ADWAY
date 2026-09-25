@@ -1,6 +1,6 @@
-127.0.0.1 garena.co.id
-127.0.0.1 gin.freefireind.in
-127.0.0.1 gamesecurity.us.freefiremobile.com
+127.0.0.1 localhost
+127.0.0.1 localhost.localdomain
+127.0.0.1 local
 255.255.255.255 broadcasthost
 ::1 localhost
 ::1 ip6-localhost
@@ -13,6 +13,9 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 0.0.0.0 0.0.0.0
 
+0.0.0.0 gin.freefireind.in
+0.0.0.0 gin.freefiremobile.com
+0.0.0.0 gamesecurity.us.freefiremobile.com
 0.0.0.0 gin.freefiremobile.com
 0.0.0.0 na.gin.freefiremobile.com
 0.0.0.0 hotro.ff.garena.vn
