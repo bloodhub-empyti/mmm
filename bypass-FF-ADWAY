@@ -1,61 +1,21 @@
-{
-    "sources": [
-        {
-            "label": "AdAway official hosts",
-            "url": "https:\/\/adaway.org\/hosts.txt",
-            "enabled": true,
-            "allow": false,
-            "redirect": false
-        },
-        {
-            "label": "AdAway official hosts",
-            "url": "https:\/\/raw.githubusercontent.com\/nguyenxuanlocuytin-pixelmond\/my-files\/refs\/heads\/main\/hosts_original.txt",
-            "enabled": true,
-            "allow": false,
-            "redirect": false
-        },
-        {
-            "label": "Pete Lowe blocklist hosts",
-            "url": "https:\/\/pgl.yoyo.org\/adservers\/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext",
-            "enabled": true,
-            "allow": false,
-            "redirect": false
-        }
-    ],
-    "blocked": [
-        {
-            "host": "gin.freefireind.in",
-            "enabled": true
-        },
-        {
-            "host": "gin.freefiremobile.com",
-            "enabled": true
-        },
-        {
-            "host": "com.multiaccounts.cloneapps",
-            "enabled": true
-        },
-        {
-            "host": "com.dts.freefiremax",
-            "enabled": true
-        },
-        {
-            "host": "garena.co.id",
-            "enabled": true
-        },
-        {
-            "host": "na.gin.freefiremobile.com",
-            "enabled": true
-        },
-        {
-            "host": "gamesecurity.us.freefiremobile.com",
-            "enabled": true
-        },
-        {
-            "host": "hotro.ff.garena.vn",
-            "enabled": true
-        }
-    ],
-    "allowed": [],
-    "redirected": []
-} 
+127.0.0.1 localhost
+127.0.0.1 localhost.localdomain
+127.0.0.1 local
+255.255.255.255 broadcasthost
+::1 localhost
+::1 ip6-localhost
+::1 ip6-loopback
+fe80::1%lo0 localhost
+ff00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+0.0.0.0 0.0.0.0
+
+0.0.0.0 garena.co.id
+0.0.0.0 gin.freefireind.in
+0.0.0.0 gamesecurity.us.freefiremobile.com
+0.0.0.0 gin.freefiremobile.com
+0.0.0.0 na.gin.freefiremobile.com
+0.0.0.0 hotro.ff.garena.vn
