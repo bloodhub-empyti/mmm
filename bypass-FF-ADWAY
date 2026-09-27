@@ -1,15 +1,6 @@
-# hi all skid code
-255.255.255.255 broadcasthost
-::1 gin.freefireind.in
-::1 garena.co.id
-::1 hotro.ff.garena.vn
-fe80::1%lo0 localhost
-ff00::0 gamesecurity.us.freefiremobile.comu
-ff00::0 ip6-mcastprefix
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-ff02::3 ip6-allhosts
-0.0.0.0 0.0.0.0
+# Hi All skid code,Im mnm 2K1
+127.0.0.1 localhost
+::1 localhost
 
 0.0.0.0 na-gin.freefiremobile.com
 0.0.0.0 gamesecurity.us.freefiremobile.com
